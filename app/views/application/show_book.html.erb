@@ -1,16 +1,13 @@
-<!-- app/views/application/list_books.html.erb -->
+<!-- app/views/application/show_book.html.erb -->
 
 <html>
   <body>
 
-    <div class="books">
-      <% books.each do |book| %>
-        <div class="book">
+    <div class="book">
 
-          <a href="/show_book/<%= book['id'] %>"> 
           <h1 class="title">
             <%= book['title'] %>
-          </h1></a>
+          </h1>
           <h2 class="author">by <%= book['author'] %></h2>
           <p class="summary">
             <%= book['summary'] %>
@@ -23,9 +20,7 @@
           </small>
 
         </div>
-        <hr />
-      <% end %>
-    </div>
-
+    <br />
+  <a href="/list_books">back to books</a>
   </body>
 </html>
