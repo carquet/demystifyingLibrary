@@ -36,6 +36,26 @@ class ApplicationController < ActionController::Base
 	    redirect_to '/list_books'
 	end
 
+	def edit_book
+		book = connection.execute("SELECT * FROM books WHERE books.id = ? LIMIT 1", params[:id]).first
+		render 'application/edit_book' , locals: { book: book}
+	end
+
+	def update_book
+		update_query = <<-SQL
+      UPDATE books
+      SET title      = ?,
+          summary    = ?,
+          author     = ?,
+          ISBN       = ?
+      WHERE books.id = ?
+    SQL
+    connection.execute update_query, params['title'], params['summary'], params['author'], params['ISBN'], params['id']
+
+    redirect_to '/list_books'
+		
+	end
+
 	def connection
 	    db_connection = SQLite3::Database.new 'db/development.sqlite3'
 	    db_connection.results_as_hash = true
