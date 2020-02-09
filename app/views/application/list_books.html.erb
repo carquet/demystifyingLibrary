@@ -2,7 +2,7 @@
 
 <html>
   <body>
-
+<a href="/new_book">Add a new book</a>
     <div class="books">
       <% books.each do |book| %>
         <div class="book">
@@ -18,12 +18,12 @@
 
           <small class="meta">
             <em class="ISBN" >ISBN number: <%= book['ISBN'] %></em><br>
-            <em class="published">published in <%= book['published'] %></em>
-            <span class="in"> <% book['in'] %>-</span>
+            <span class="in"> <%= book['in'] %>-</span>
           </small>
 
         </div>
         <hr />
+
       <% end %>
     </div>
 

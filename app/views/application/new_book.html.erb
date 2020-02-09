@@ -1,0 +1,33 @@
+<!-- app/views/application/new_book.html.erb -->
+
+<html>
+  <body>
+
+    <form method="post" action="/create_book">
+
+      <label>Title</label>
+      <input name="title" type="text" />
+      <br /> <br />
+
+      <label>Summary</label>
+      <textarea name="summary"></textarea>
+      <br /> <br />
+
+      <label>Author</label>
+      <input name="author" type="text" />
+      <br /> <br />
+
+      <label>ISB number</label>
+      <input name="ISBN" type="text" />
+      <br /> <br />
+
+       <label>Available</label>
+      <input name="in" type="checkbox" checked/>
+      <br /> <br />
+
+      <input type="submit" value="Create Book" />
+
+    </form>
+<a href="/list_books">Back to books</a>
+  </body>
+</html>
