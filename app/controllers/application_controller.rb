@@ -1,8 +1,12 @@
 class ApplicationController < ActionController::Base
 
-	def say_hello
-		name = params['name'] || ' World!'
-		render 'application/hello' , locals: { name: name }
+	def list_books
+		connection = SQLite3::Database.new 'db/development.sqlite3'
+    	connection.results_as_hash = true
+
+    	books = connection.execute("SELECT * FROM books")
+
+    	render 'application/list_books', locals: { books: books }
 	end
 
 end
