@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
 	def show_book
 		
-    	book = connection.execute("SELECT * FROM books WHERE books.id = ? LIMIT 1", params[:id]).first
+    	book = book = find_book_by_id(params['id'])
     	
     	render 'application/show_book', locals: { book: book }
 	end
@@ -37,8 +37,12 @@ class ApplicationController < ActionController::Base
 	end
 
 	def edit_book
-		book = connection.execute("SELECT * FROM books WHERE books.id = ? LIMIT 1", params[:id]).first
+		book = find_book_by_id(params['id'])
 		render 'application/edit_book' , locals: { book: book}
+	end
+
+	def find_book_by_id(id)
+		connection.execute("SELECT * FROM books WHERE books.id = ? LIMIT 1", params[:id]).first
 	end
 
 	def update_book
