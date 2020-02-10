@@ -18,7 +18,10 @@
             <span class="in"> <%= book['in'] %>-</span>
           </small>
         <a href="/edit_book/<%= book['id'] %>">Edit book</a>
-        </div>
+        <form method="post" action="/delete_book/<%= book['id'] %>" style='display: inline'>
+            <input type="submit" value="Delete" />
+        </form>
+    </div>
     <br />
   <a href="/list_books">back to books</a>
   </body>

@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post '/create_book' => 'application#create_book'
   get '/edit_book/:id' => 'application#edit_book'
   post '/update_book/:id' => 'application#update_book'
+  post '/delete_book/:id' => 'application#delete_book'
 end

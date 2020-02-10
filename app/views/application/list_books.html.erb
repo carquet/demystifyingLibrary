@@ -23,6 +23,9 @@
 
         </div>
         <a href="/edit_book/<%= book['id'] %>">Edit book</a>
+        <form method="post" action="/delete_book/<%= book['id'] %>" style='display: inline'>
+            <input type="submit" value="Delete" />
+        </form>
         <hr />
       
       <% end %>

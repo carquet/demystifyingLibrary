@@ -41,6 +41,11 @@ class ApplicationController < ActionController::Base
 		render 'application/edit_book' , locals: { book: book}
 	end
 
+	def delete_book
+		connection.execute("DELETE FROM books WHERE books.id = ?", params['id'])
+		redirect_to '/list_books'	
+	end
+
 	def find_book_by_id(id)
 		connection.execute("SELECT * FROM books WHERE books.id = ? LIMIT 1", params[:id]).first
 	end
