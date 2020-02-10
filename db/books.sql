@@ -3,6 +3,6 @@ CREATE TABLE "books" (
   "title"      varchar,
   "summary"       text,
   "author"     varchar,
-  "ISBN"		string,
+  "isbn"		string,
   "in"			boolean,
   "published" datetime NOT NULL);

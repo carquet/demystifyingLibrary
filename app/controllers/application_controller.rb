@@ -20,19 +20,12 @@ class ApplicationController < ActionController::Base
 	end
 
 	def create_book
-	    insert_query = <<-SQL
-	      INSERT INTO books (title, summary, author, ISBN, 'in', published)
-	      VALUES (?, ?, ?, ?, ?, ?)
-	    SQL
-
-	    connection.execute insert_query,
-	      params['title'],
-	      params['summary'],
-	      params['author'],
-	      params['ISBN'],
-	      params['in'],
-	      Date.current.to_s
-
+	    book = Book.new('title' => params['title'],
+                    'summary' => params['summary'],
+                    'author' => params['author'],
+                    'isbn' => params['isbn'],
+                    'in' => params['in'])
+	    book.save
 	    redirect_to '/list_books'
 	end
 
@@ -56,7 +49,7 @@ class ApplicationController < ActionController::Base
       SET title      = ?,
           summary    = ?,
           author     = ?,
-          ISBN       = ?
+          isbn       = ?
       WHERE books.id = ?
     SQL
     connection.execute update_query, params['title'], params['summary'], params['author'], params['ISBN'], params['id']
@@ -64,12 +57,12 @@ class ApplicationController < ActionController::Base
     redirect_to '/list_books'
 		
 	end
-
-	def connection
+def connection
 	    db_connection = SQLite3::Database.new 'db/development.sqlite3'
 	    db_connection.results_as_hash = true
 	    db_connection
-  	end
+  end
+	
 
 
 end
