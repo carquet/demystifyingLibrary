@@ -35,7 +35,8 @@ class ApplicationController < ActionController::Base
 	end
 
 	def delete_book
-		connection.execute("DELETE FROM books WHERE books.id = ?", params['id'])
+		book = Book.find(params['id'])
+		book.destroy
 		redirect_to '/list_books'	
 	end
 

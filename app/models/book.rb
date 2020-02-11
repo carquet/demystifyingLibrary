@@ -64,6 +64,10 @@ class Book
 	      Date.current.to_s	
   end
 
+  def destroy
+  	connection.execute("DELETE * FROM books WHERE books.id = '", id)
+  end
+
   def self.find(id)
   	book_hash = connection.execute("SELECT * FROM books WHERE books.id = ? LIMIT 1", id).first
   	Book.new(book_hash)
