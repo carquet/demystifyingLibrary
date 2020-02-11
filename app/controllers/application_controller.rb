@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
 	def show_book
 		
-    	book = book = find_book_by_id(params['id'])
+    	book = Book.find(params['id'])
     	
     	render 'application/show_book', locals: { book: book }
 	end
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def edit_book
-		book = find_book_by_id(params['id'])
+		book = Book.find(params['id'])
 		render 'application/edit_book' , locals: { book: book}
 	end
 
@@ -44,24 +44,14 @@ class ApplicationController < ActionController::Base
 	end
 
 	def update_book
-		update_query = <<-SQL
-      UPDATE books
-      SET title      = ?,
-          summary    = ?,
-          author     = ?,
-          isbn       = ?
-      WHERE books.id = ?
-    SQL
-    connection.execute update_query, params['title'], params['summary'], params['author'], params['ISBN'], params['id']
+		book = Book.find(params['id'])
+		book.set_attributes('title' => params['title'], 'summary' => params['summary'], 'author' => params['author'], 'isbn' => params['isbn'], 'in' => params['in'])
+    	book.save
 
     redirect_to '/list_books'
 		
 	end
-def connection
-	    db_connection = SQLite3::Database.new 'db/development.sqlite3'
-	    db_connection.results_as_hash = true
-	    db_connection
-  end
+
 	
 
 

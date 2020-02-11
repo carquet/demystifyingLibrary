@@ -3,22 +3,22 @@
 <html>
   <body>
 
-    <form method="post" action="/update_book/<%= book['id'] %>">
+    <form method="post" action="/update_book/<%= book.id %>">
 
       <label for="title"> Title</label>
-      <input id="title" name="title" type="text" value="<%= book['title'] %>"/>
+      <input id="title" name="title" type="text" value="<%= book.title %>"/>
       <br /> <br />
 
       <label for="body"> Summary</label>
-      <textarea id="body" name="summary"><%= book['summary'] %></textarea>
+      <textarea id="body" name="summary"><%= book.summary %></textarea>
       <br /> <br />
 
       <label for="author"> Author</label>
-      <input id="author" name="author" type="text" value="<%= book['author'] %>"/>
+      <input id="author" name="author" type="text" value="<%= book.author %>"/>
       <br /> <br />
 
       <label>ISB number</label>
-      <input name="ISBN" type="text" value="<%= book['isbn'] %>" />
+      <input name="ISBN" type="text" value="<%= book.isbn %>" />
       <br /> <br />
 
       <label>Available</label>
