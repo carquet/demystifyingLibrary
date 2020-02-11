@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
 	def list_books
 		
-    	books = connection.execute("SELECT * FROM books")
+    	books = Book.all
 
     	render 'application/list_books', locals: { books: books }
 	end
@@ -40,9 +40,6 @@ class ApplicationController < ActionController::Base
 		redirect_to '/list_books'	
 	end
 
-	def find_book_by_id(id)
-		connection.execute("SELECT * FROM books WHERE books.id = ? LIMIT 1", params[:id]).first
-	end
 
 	def update_book
 		book = Book.find(params['id'])

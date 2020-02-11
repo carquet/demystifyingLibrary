@@ -65,7 +65,15 @@ class Book
   end
 
   def destroy
-  	connection.execute("DELETE * FROM books WHERE books.id = '", id)
+  	connection.execute "DELETE FROM books WHERE books.id = ?", id
+  end
+
+  def self.all
+  	book_hashes = connection.execute("SELECT * FROM books")
+  	book_hashes.map do |book_hash|
+  		Book.new(book_hash)
+  	end
+  	
   end
 
   def self.find(id)
