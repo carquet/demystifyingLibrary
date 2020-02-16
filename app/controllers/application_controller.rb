@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
 	def show_book
 		
     	book = Book.find(params['id'])
-    	
-    	render 'application/show_book', locals: { book: book }
+    	reviews = connection.execute('SELECT * FROM reviews WHERE reviews.book_id = ? ', params['id'])
+    	render 'application/show_book', locals: { book: book, reviews: reviews }
 	end
 
 	def new_book
@@ -56,7 +56,13 @@ class ApplicationController < ActionController::Base
 		
 	end
 
-	
+	def connection
+	    db_connection = SQLite3::Database.new 'db/development.sqlite3'
+	    db_connection.results_as_hash = true
+	    db_connection
+  end
+
+
 
 
 end

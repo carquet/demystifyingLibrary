@@ -23,6 +23,20 @@
         </form>
     </div>
     <br />
+    <div class="reviews">
+        <h3>reviews:</h3>
+        <hr />
+        <% reviews.each_with_index do |review, index| %>
+          <div class="review">
+            <small class="review_meta">
+              <span class="review_author">#<%= index+1 %> by <%= review['author'] %> -</span>
+              <em class="review_created_at"><%= review['created_at'] %></em>
+            </small>
+            <p class="review_body"><%= review['body'] %></p>
+          </div>
+          <hr />
+        <% end %>
+      </div>
   <a href="/list_books">back to books</a>
   </body>
 </html>
