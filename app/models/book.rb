@@ -20,6 +20,15 @@ class Book
   	id.nil?
   end
 
+#present? method, which is a method that Rails provides:
+#"".present? => false
+#nil.present? => false
+#"somethign".present? => true
+  def valid?
+    title.present? && summary.present? && author.present?
+    
+  end
+
   def save
   	if new_record?
   		insert
