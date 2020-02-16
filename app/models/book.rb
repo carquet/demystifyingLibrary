@@ -39,6 +39,7 @@ class Book
   	end
   	
   end
+  
   def insert
   	insert_query = <<-SQL
 	      INSERT INTO books (title, summary, author, isbn, 'in', published)

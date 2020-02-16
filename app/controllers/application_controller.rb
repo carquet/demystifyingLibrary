@@ -25,8 +25,11 @@ class ApplicationController < ActionController::Base
                     'author' => params['author'],
                     'isbn' => params['isbn'],
                     'in' => params['in'])
-	    book.save
-	    redirect_to '/list_books'
+	    if book.save
+	    	redirect_to '/list_books'
+	    else
+	    	render 'application/new_book'
+	    end
 	end
 
 	def edit_book
