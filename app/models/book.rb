@@ -17,7 +17,7 @@ class Book
   end
 
   def new_record?
-  	id.nil?
+    id.nil?
   end
 
 #present? method, which is a method that Rails provides:
@@ -30,6 +30,8 @@ class Book
   end
 
   def save
+    #guard clause: prevent from having incomplete information
+    return false unless valid?
   	if new_record?
   		insert
   	else
