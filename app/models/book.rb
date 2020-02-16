@@ -1,9 +1,9 @@
 class Book
-  attr_reader :id, :title, :summary, :author, :isbn, :in, :published
+  attr_reader :id, :title, :summary, :author, :isbn, :in, :published, :errors
 
   def initialize(attributes={})
   	set_attributes(attributes)
-  	
+  	@errors = {}
   end
 
   def set_attributes(attributes)
@@ -25,7 +25,10 @@ class Book
 #nil.present? => false
 #"somethign".present? => true
   def valid?
-    title.present? && summary.present? && author.present?
+    @errors['title'] = 'cannot be blank' if title.blank?
+    @errors['summary'] = 'cannot be blank' if summary.blank?
+    @errors['author'] = 'cannot be blank' if author.blank?
+    @errors.empty?
     
   end
 
@@ -39,7 +42,7 @@ class Book
   	end
   	
   end
-  
+
   def insert
   	insert_query = <<-SQL
 	      INSERT INTO books (title, summary, author, isbn, 'in', published)

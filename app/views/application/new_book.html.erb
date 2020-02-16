@@ -2,6 +2,13 @@
 
 <html>
   <body>
+    <div class="errors">
+      <% book.errors.each do |attribute, error| %>
+        <p class="error" style="color: orange">
+          The <%= attribute %> <%= error %>
+        </p>
+      <% end%>
+    </div>
 
     <form method="post" action="/create_book">
 
