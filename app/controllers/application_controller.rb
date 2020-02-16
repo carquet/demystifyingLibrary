@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
 	end
 
 	def new_book
-		render 'application/new_book'	
+		book = Book.new
+		render 'application/new_book'	, locals: {book: book}
 	end
 
 	def create_book
@@ -28,7 +29,7 @@ class ApplicationController < ActionController::Base
 	    if book.save
 	    	redirect_to '/list_books'
 	    else
-	    	render 'application/new_book'
+	    	render 'application/new_book', locals: {book: book}
 	    end
 	end
 

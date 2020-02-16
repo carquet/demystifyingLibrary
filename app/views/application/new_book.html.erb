@@ -6,19 +6,19 @@
     <form method="post" action="/create_book">
 
       <label>Title</label>
-      <input name="title" type="text" />
+      <input name="title" type="text" value="<%= book.title %>"/>
       <br /> <br />
 
       <label>Summary</label>
-      <textarea name="summary"></textarea>
+      <textarea name="summary" ><%= book.summary %></textarea>
       <br /> <br />
 
       <label>Author</label>
-      <input name="author" type="text" />
+      <input name="author" type="text" value="<%= book.author %>" />
       <br /> <br />
 
       <label>ISB number</label>
-      <input name="isbn" type="text" />
+      <input name="isbn" type="text" value="<%= book.isbn %>" />
       <br /> <br />
 
        <label>Available</label>
