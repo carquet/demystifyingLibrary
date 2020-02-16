@@ -48,9 +48,11 @@ class ApplicationController < ActionController::Base
 	def update_book
 		book = Book.find(params['id'])
 		book.set_attributes('title' => params['title'], 'summary' => params['summary'], 'author' => params['author'], 'isbn' => params['isbn'], 'in' => params['in'])
-    	book.save
-
-    redirect_to '/list_books'
+    if book.save
+    	redirect_to '/list_books'
+    else
+    	render 'application/edit_book', locals: {book: book}
+    end
 		
 	end
 
