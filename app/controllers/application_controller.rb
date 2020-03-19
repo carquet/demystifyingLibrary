@@ -33,6 +33,16 @@ class ApplicationController < ActionController::Base
 	    end
 	end
 
+	def create_review
+			book = Book.find(params['book_id'])
+			book.create_reviews('body' => params['body'],
+													'author' => params['author']
+				)
+
+	      redirect_to "/show_book/#{params['book_id']}"
+		
+	end
+
 	def edit_book
 		book = Book.find(params['id'])
 		render 'application/edit_book' , locals: { book: book}

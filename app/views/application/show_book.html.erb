@@ -2,7 +2,7 @@
 
 <html>
   <body>
-
+ <a href="/list_books">back to books</a>
     <div class="book">
 
           <h1 class="title">
@@ -23,6 +23,17 @@
         </form>
     </div>
     <br />
+    <div>
+      <form method="post" action="/create_review/<%= book.id %>">
+        <label>Write your review</label>
+        <textarea name="body"></textarea>
+        <br />
+        <label for="author">Name</label>
+        <input id="author" name="author" type="text" />
+        <br /> 
+        <input type="submit" name="Write a review">
+      </form>
+    </div>
     <div class="reviews">
         <h3>reviews:</h3>
         <hr />
@@ -37,6 +48,6 @@
           <hr />
         <% end %>
       </div>
-  <a href="/list_books">back to books</a>
+ 
   </body>
 </html>

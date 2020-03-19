@@ -83,6 +83,11 @@ class Book
   	connection.execute "DELETE FROM books WHERE books.id = ?", id
   end
 
+  def create_reviews(attributes)
+    review = Review.new(attributes.merge!('book_id' => id))
+    review.save
+  end
+
   def self.all
   	book_hashes = connection.execute("SELECT * FROM books")
   	book_hashes.map do |book_hash|
